@@ -66,7 +66,7 @@ We simply need to show that the commutator subgroup $[G,G]$ is contained within 
 Let $\phi:G\to H$ be a group homomorphism, and let $\pi_G:G\to G/[G,G]$, $\pi_H:H\to H/[H,H]$ be the quotient homomophisms of $G$ and $H$ into their respective abelianizations. Then there exists a group homomorphism $\phi^\text{ab}:G^\text{ab}\to H^\text{ab}$ given by $\phi^\text{ab}(g[G,G])=\phi(g)[H,H]\forall g[G,G]\in G^\text{ab}$, which is the unique group homomorphism $\psi:G^\text{ab}\to H^\text{ab}$ such that $\psi\circ\pi_G=\pi_H\circ\phi$.
 \end{lemma}
 \begin{proof}
-Let $\psi:=\pi_H\circ\phi:G\to H^\text{ab}$. Then by the universal property of the abelianization of a group, there exists a unique group homomorphism $\phi^\text{ab}:G^\text{ab}\to H^\text{ab}$ such that $\phi^\text{ab}\circ\pi_G=\pi_H\circ\phi$. That is, given any $g\in G$, we have \[\phi^\text{ab}(g[G,G])=\phi^\text{ab}\circ\pi_G(g)=\pi_H\circ\phi(g)=\phi(g)[H,H],\] as required.
+Consider the map $\pi_H\circ\phi:G\to H^\text{ab}$. This is a map from a group to an abelian group, so by the universal property of the abelianization of a group, there exists a unique group homomorphism $\phi^\text{ab}:G^\text{ab}\to H^\text{ab}$ such that $\phi^\text{ab}\circ\pi_G=\pi_H\circ\phi$. That is, given any $g\in G$, we have \[\phi^\text{ab}(g[G,G])=\phi^\text{ab}\circ\pi_G(g)=\pi_H\circ\phi(g)=\phi(g)[H,H],\] as required.
 \end{proof}
 
 \begin{theorem}
