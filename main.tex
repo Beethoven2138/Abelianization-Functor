@@ -59,11 +59,34 @@ Let $\mathbf{C}$ be a category, and let $q:Y\to Z$ and $q':Y\to Z'$ both be coeq
 Since $q$ is a coequalizer and $q'\circ f_1=q'\circ f_2$, there exists a unique morphism $h:Z\to Z'$ such that $q'=h\circ q$. Similarly, there exists a unique morphism $h':Z'\to Z$ such that $q=h'\circ q'$. Hence, we have $q'=(h\circ h') \circ q'$. If we then let $W=Z'$ and $g=q'$, since we have that both $\text{id}_{Z'}\circ q'=q'$ and $q'=(h\circ h') \circ q'$, it follows from uniqueness that $h\circ h'=\text{id}_{Z'}$. Similarly, $h'\circ h=\text{id}_Z$. Hence, $h$ is an isomorphism.
 \end{proof}
 \begin{definition}
-Product
+Let $\mathbf{C}$ be a category, and let $(X_\alpha)_{\alpha\in\mathcal{A}}$ be an indexed collection of objects of $\mathbf{C}$. An object $X$ equipped with morphisms $\text{pr}_\alpha:X\to X_\alpha$ is a product of $(X_\alpha)_{\alpha\in\mathcal{A}}$ if for any object $Z$ and morphisms $f_\alpha:Z\to X_\alpha$, there exists a unique morphism $F:Z\to X$ such that $\text{pr}_\alpha\circ F=f_\alpha\forall\alpha\in\mathcal{A}$.\[
+\begin{tikzcd}
+& Z \arrow[dl, bend right, "f_1"'] \arrow[dr, bend left, "f_2"] \arrow[d, "\exists! F"] & \\
+X_1 & X \arrow[l, "\text{pr}_1"] \arrow[r, swap, "\text{pr}_2"] & X_2
+\end{tikzcd}
+\]
 \end{definition}
+\begin{theorem}
+Let $\mathbf{C}$ be a category, and let $(X_\alpha)_{\alpha\in\mathcal{A}}$ be an indexed collection of objects of $\mathbf{C}$. Suppose $(X,\text{pr}_\alpha)$ and $(X',\text{pr}'_\alpha)$ are both products of $(X_\alpha)_{\alpha\in\mathcal{A}}$. Then there exists a unique isomorphism $h:X\to X'$ such that $\text{pr}_\alpha'\circ h=\text{pr}_\alpha\forall\alpha\in\mathcal{A}$.
+\end{theorem}
+\begin{proof}
+If we let $Z=X'$ and $f_\alpha=\text{pr}_\alpha'$, then there exists a unique morphism $h':X'\to X$ such that $\text{pr}_\alpha'=\text{pr}_\alpha\circ h'$. Similarly, there exists a unique morphism $h:X\to X'$ such that $\text{pr}_\alpha=\text{pr}_\alpha'\circ h$. From this we obtain $\text{pr}_\alpha=\text{pr}_\alpha\circ(h'\circ h)$. Then, if we let $Z=X$ and $f_\alpha=\text{pr}_\alpha$, we see that both $h'\circ h$ and $\text{id}_X$ are candidates for $F$. Hence, by uniqueness, $h'\circ h=\text{id}_X$. Similarly, $h\circ h'=\text{id}_{X'}$. Hence, $h$ is an isomorphism.
+\end{proof}
 \begin{definition}
-Coproduct
+Let $\mathbf{C}$ be a category and let $(X_\alpha)_{\alpha\in\mathcal{A}}$ be an indexed collection of objects of $\mathbf{C}$. An object $Y$ along with morphisms $\iota_\alpha:X_\alpha\to Y$ is a coproduct of $(X_\alpha)_{\alpha\in\mathcal{A}}$ if for any object $Z$ with morphisms $f_\alpha:X_\alpha\to Z$, there exists a unique morphism $F:Y\to Z$ such that for all $\alpha\in\mathcal{A}$, we have $F\circ\iota_\alpha=f_\alpha$.\[
+\begin{tikzcd}[row sep=large, column sep=large]
+X_1 \arrow[dr, "\iota_1"] \arrow[ddr, bend right, "f_1"'] & & X_2 \arrow[dl, "\iota_2"'] \arrow[ddl, bend left, "f_2"] \\
+& Y \arrow[d, "\exists! F"] & \\
+& Z & 
+\end{tikzcd}
+\]
 \end{definition}
+\begin{theorem}
+Let $\mathbf{C}$ be a category and let $(X_\alpha)_{\alpha\in\mathcal{A}}$ be objects of $\mathcal{C}$. Suppose that both $(Y,(\iota_\alpha)_{\alpha\in\mathcal{A}})$ and $(Y',(\iota'_\alpha)_{\alpha\in\mathcal{A}})$ are coproducts of $(X_\alpha)_{\alpha\in\mathcal{A}}$. Then there exists a unique isomorphism $h:Y\to Y'$ such that $h\circ\iota_\alpha=\iota'_\alpha\forall\alpha\in\mathcal{A}$.
+\end{theorem}
+\begin{proof}
+If we let $Z=Y'$ and $f_\alpha=\iota_\alpha'$, there exists a unique morphism $h:Y\to Y'$ such that $\iota_\alpha'=h\circ\iota_\alpha\forall\alpha\in\mathcal{A}$. Similarly, there exists a unique morphism $h':Y'\to Y$ such that $\iota_\alpha=h'\circ\iota_\alpha'\forall\alpha\in\mathcal{A}$. Hence, we have $\iota_\alpha=(h'\circ h)\circ\iota_\alpha\forall\alpha\in\mathcal{A}$. If we then let $Z=Y$ and $f_\alpha=\iota_\alpha$, we see that both $h'\circ h$ and $\text{id}_Y$ are candidates for $F$. Hence, by uniqueness, $h'\circ h=\text{id}_Y$. Similarly, $h\circ h'=\text{id}_{Y'}$. Hence, $h$ is an isomorphism.
+\end{proof}
 \section{Sets}
 \begin{definition}[Universal property of the quotient set]
 Let $X$ be a set and let $\sim$ be an equivalence relation on $X$. A pair $(X',\pi:X\to X')$ is a quotient of $X$  by $\sim$ if given any $f:X\to Y$ such that $x_0\sim x_1\implies f(x_0)=f(x_1)\forall x_0,x_1\in X$, then there exists a unique $\overline{f}:X'\to Y$ such that $f=\overline{f}\circ \pi$.
