@@ -31,6 +31,39 @@
 \maketitle
 \section{Introduction}
 This article will give categorical definitions of the standard objects from algebra, by way of defining universal properties which determine the objects up to unique isomorphism. For a given object $A$ of interest, the general procedure will be to first define an object $B$ as an object which satisfies a specific universal property, then show that $A$ satisfies that universal property, and then show that all pairs of objects $B$ which satisfy the universal property are related by a unique isomorphism. This will then demonstrate that the universal property determines $A$ up to unique isomorphism. We will then apply these universal properties to prove additional useful categorical results, such as the functoriality of the abelianization of a group.
+\section{Preliminary Categorical Constructions}
+\begin{definition}
+Let $\mathbf{C}$ be a category and let $f_1,f_2:X\to Y\in\text{Hom}_\mathbf{C}(X,Y)$. Then a morphism $j:W\to X\in\text{Hom}_\textbf{C}(W,X)$ is an equaliser of $f_1$ and $f_2$ if $f_1\circ j=f_2\circ j$ and given any morphism $g:T\to X$ with $f_1\circ g=f_2\circ g$, there is a unique morphism $h:T\to W$ such that $j\circ h=g$.\[
+\begin{tikzcd}
+W \arrow[r, "j"] & X \arrow[r, shift left, "f_1"] \arrow[r, shift right, swap, "f_2"] & Y \\
+T \arrow[u, "\exists! h"] \arrow[ur, swap, "\forall g"] & & 
+\end{tikzcd}
+\]
+\end{definition}
+\begin{theorem}
+Let $\mathbf{C}$ be a category, and suppose that $j:W\to X$ and $j':W'\to X$ are both equalizers of morphisms $f_1,f_2\in\text{Hom}_\mathbf{C}(X,Y)$. Then there exists a unique isomorphism $h:W\to W'$ such that $j=j'\circ h$.
+\end{theorem}
+\begin{proof}
+Since $j'$ is an equalizer and $f_1\circ j=f_2\circ j$, there exists a unique morphism $h:W\to W'$ such that $j=j'\circ h$. Similarly, there exists a unique morphism $h':W'\to W$ such that $j'=j\circ h'$. Hence, we have $j'=j'\circ (h\circ h')$. If we then let $T=W'$ and $g=j'$, since we have that both $j'\circ\text{id}_{W'}=j'$ and $j'\circ(h\circ h')=j'$, it follows from uniqueness that $h\circ h'=\text{id}_{W'}$. Similarly, $h'\circ h=\text{id}_W$. Hence, $h$ is an isomorphism.
+\end{proof}
+\begin{definition}
+Let $\mathbf{C}$ be a category and let $f_1,f_2:X\to Y$ be morphisms. Then a morphism $q:Y\to Z$ is a coequalizer of $f_1$ and $f_2$ if $q\circ f_1=q\circ f_2$ and if $g:Y\to W$ is a morphism with $g\circ f_1=g\circ f_2$, then there is a unique morphism $h:Z\to W$ with $g=h\circ q$.\[\begin{tikzcd}
+X \arrow[r, shift left, "f_1"] \arrow[r, shift right, swap, "f_2"] & Y \arrow[r, "q"] \arrow[dr, swap, "\forall g"] & Z \arrow[d, "\exists! h"] \\
+& & W
+\end{tikzcd}\]
+\end{definition}
+\begin{theorem}
+Let $\mathbf{C}$ be a category, and let $q:Y\to Z$ and $q':Y\to Z'$ both be coequalizers of $f_1,f_2\in\text{Hom}_\mathbf{C}(X,Y)$. Then there is a unique isomorphism $h:Z\to Z'$ such that $q'=h\circ q$.
+\end{theorem}
+\begin{proof}
+Since $q$ is a coequalizer and $q'\circ f_1=q'\circ f_2$, there exists a unique morphism $h:Z\to Z'$ such that $q'=h\circ q$. Similarly, there exists a unique morphism $h':Z'\to Z$ such that $q=h'\circ q'$. Hence, we have $q'=(h\circ h') \circ q'$. If we then let $W=Z'$ and $g=q'$, since we have that both $\text{id}_{Z'}\circ q'=q'$ and $q'=(h\circ h') \circ q'$, it follows from uniqueness that $h\circ h'=\text{id}_{Z'}$. Similarly, $h'\circ h=\text{id}_Z$. Hence, $h$ is an isomorphism.
+\end{proof}
+\begin{definition}
+Product
+\end{definition}
+\begin{definition}
+Coproduct
+\end{definition}
 \section{Sets}
 \begin{definition}[Universal property of the quotient set]
 Let $X$ be a set and let $\sim$ be an equivalence relation on $X$. A pair $(X',\pi:X\to X')$ is a quotient of $X$  by $\sim$ if given any $f:X\to Y$ such that $x_0\sim x_1\implies f(x_0)=f(x_1)\forall x_0,x_1\in X$, then there exists a unique $\overline{f}:X'\to Y$ such that $f=\overline{f}\circ \pi$.
