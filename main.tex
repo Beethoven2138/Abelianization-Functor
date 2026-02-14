@@ -29,6 +29,7 @@
 \begin{document}
 
 \maketitle
+
 \section{Introduction}
 This article will give categorical definitions of the standard objects from algebra, by way of defining universal properties which determine the objects up to unique isomorphism. For a given object $A$ of interest, the general procedure will be to first define an object $B$ as an object which satisfies a specific universal property, then show that $A$ satisfies that universal property, and then show that all pairs of objects $B$ which satisfy the universal property are related by a unique isomorphism. This will then demonstrate that the universal property determines $A$ up to unique isomorphism. We will then apply these universal properties to prove additional useful categorical results, such as the functoriality of the abelianization of a group.
 \section{Preliminary Categorical Constructions}
@@ -73,13 +74,10 @@ Let $\mathbf{C}$ be a category, and let $(X_\alpha)_{\alpha\in\mathcal{A}}$ be a
 If we let $Z=X'$ and $f_\alpha=\text{pr}_\alpha'$, then there exists a unique morphism $h':X'\to X$ such that $\text{pr}_\alpha'=\text{pr}_\alpha\circ h'$. Similarly, there exists a unique morphism $h:X\to X'$ such that $\text{pr}_\alpha=\text{pr}_\alpha'\circ h$. From this we obtain $\text{pr}_\alpha=\text{pr}_\alpha\circ(h'\circ h)$. Then, if we let $Z=X$ and $f_\alpha=\text{pr}_\alpha$, we see that both $h'\circ h$ and $\text{id}_X$ are candidates for $F$. Hence, by uniqueness, $h'\circ h=\text{id}_X$. Similarly, $h\circ h'=\text{id}_{X'}$. Hence, $h$ is an isomorphism.
 \end{proof}
 \begin{definition}
-Let $\mathbf{C}$ be a category and let $(X_\alpha)_{\alpha\in\mathcal{A}}$ be an indexed collection of objects of $\mathbf{C}$. An object $Y$ along with morphisms $\iota_\alpha:X_\alpha\to Y$ is a coproduct of $(X_\alpha)_{\alpha\in\mathcal{A}}$ if for any object $Z$ with morphisms $f_\alpha:X_\alpha\to Z$, there exists a unique morphism $F:Y\to Z$ such that for all $\alpha\in\mathcal{A}$, we have $F\circ\iota_\alpha=f_\alpha$.\[
-\begin{tikzcd}[row sep=large, column sep=large]
-X_1 \arrow[dr, "\iota_1"] \arrow[ddr, bend right, "f_1"'] & & X_2 \arrow[dl, "\iota_2"'] \arrow[ddl, bend left, "f_2"] \\
-& Y \arrow[d, "\exists! F"] & \\
-& Z & 
-\end{tikzcd}
-\]
+Let $\mathbf{C}$ be a category and let $(X_\alpha)_{\alpha\in\mathcal{A}}$ be an indexed collection of objects of $\mathbf{C}$. An object $Y$ along with morphisms $\iota_\alpha:X_\alpha\to Y$ is a coproduct of $(X_\alpha)_{\alpha\in\mathcal{A}}$ if for any object $Z$ with morphisms $f_\alpha:X_\alpha\to Z$, there exists a unique morphism $F:Y\to Z$ such that for all $\alpha\in\mathcal{A}$, we have $F\circ\iota_\alpha=f_\alpha$.\[\begin{tikzcd}
+& Z \arrow[dl, bend right, "f_1"'] \arrow[dr, bend left, "f_2"] \arrow[d, "\exists! F"] & \\
+X_1 & Y \arrow[l, "\iota_1"] \arrow[r, swap, "\iota_2"] & X_2
+\end{tikzcd}\]
 \end{definition}
 \begin{theorem}
 Let $\mathbf{C}$ be a category and let $(X_\alpha)_{\alpha\in\mathcal{A}}$ be objects of $\mathcal{C}$. Suppose that both $(Y,(\iota_\alpha)_{\alpha\in\mathcal{A}})$ and $(Y',(\iota'_\alpha)_{\alpha\in\mathcal{A}})$ are coproducts of $(X_\alpha)_{\alpha\in\mathcal{A}}$. Then there exists a unique isomorphism $h:Y\to Y'$ such that $h\circ\iota_\alpha=\iota'_\alpha\forall\alpha\in\mathcal{A}$.
