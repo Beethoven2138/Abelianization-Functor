@@ -74,9 +74,10 @@ Let $\mathbf{C}$ be a category, and let $(X_\alpha)_{\alpha\in\mathcal{A}}$ be a
 If we let $Z=X'$ and $f_\alpha=\text{pr}_\alpha'$, then there exists a unique morphism $h':X'\to X$ such that $\text{pr}_\alpha'=\text{pr}_\alpha\circ h'$. Similarly, there exists a unique morphism $h:X\to X'$ such that $\text{pr}_\alpha=\text{pr}_\alpha'\circ h$. From this we obtain $\text{pr}_\alpha=\text{pr}_\alpha\circ(h'\circ h)$. Then, if we let $Z=X$ and $f_\alpha=\text{pr}_\alpha$, we see that both $h'\circ h$ and $\text{id}_X$ are candidates for $F$. Hence, by uniqueness, $h'\circ h=\text{id}_X$. Similarly, $h\circ h'=\text{id}_{X'}$. Hence, $h$ is an isomorphism.
 \end{proof}
 \begin{definition}
-Let $\mathbf{C}$ be a category and let $(X_\alpha)_{\alpha\in\mathcal{A}}$ be an indexed collection of objects of $\mathbf{C}$. An object $Y$ along with morphisms $\iota_\alpha:X_\alpha\to Y$ is a coproduct of $(X_\alpha)_{\alpha\in\mathcal{A}}$ if for any object $Z$ with morphisms $f_\alpha:X_\alpha\to Z$, there exists a unique morphism $F:Y\to Z$ such that for all $\alpha\in\mathcal{A}$, we have $F\circ\iota_\alpha=f_\alpha$.\[\begin{tikzcd}
-& Z \arrow[dl, bend right, "f_1"'] \arrow[dr, bend left, "f_2"] \arrow[d, "\exists! F"] & \\
-X_1 & Y \arrow[l, "\iota_1"] \arrow[r, swap, "\iota_2"] & X_2
+Let $\mathbf{C}$ be a category and let $(X_\alpha)_{\alpha\in\mathcal{A}}$ be an indexed collection of objects of $\mathbf{C}$. An object $Y$ along with morphisms $\iota_\alpha:X_\alpha\to Y$ is a coproduct of $(X_\alpha)_{\alpha\in\mathcal{A}}$ if for any object $Z$ with morphisms $f_\alpha:X_\alpha\to Z$, there exists a unique morphism $F:Y\to Z$ such that for all $\alpha\in\mathcal{A}$, we have $F\circ\iota_\alpha=f_\alpha$.\[\begin{tikzcd}[column sep=small, row sep=large]
+X_1 \arrow[dr, "\iota_1"] \arrow[ddr, bend right, "f_1"'] & & X_2 \arrow[dl, "\iota_2"'] \arrow[ddl, bend left, "f_2"] \\
+& Y \arrow[d, "\exists! F"] & \\
+& Z & 
 \end{tikzcd}\]
 \end{definition}
 \begin{theorem}
