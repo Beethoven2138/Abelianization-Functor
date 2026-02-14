@@ -8,13 +8,11 @@
 \usepackage{amsfonts}
 \usepackage{tikz-cd}
 \usetikzlibrary{matrix}
-\usepackage[english]{babel}
 \usepackage{mathtools}
 \usepackage[a4paper, total={6in, 8in}]{geometry}
 \usepackage{cite}
-\usepackage{graphicx}
 \graphicspath{ {./images/} }
-\setcounter{section}{1}
+\setcounter{section}{0}
 
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{definition}[theorem]{Definition}
@@ -24,26 +22,40 @@
 \newtheorem{example}[theorem]{Example}
 \newtheorem{remark}[theorem]{Remark}
 \newtheorem{exercise}{Exercise}[subsection]
-\title{Concerning Universal Properties and the Abelianization Functor}
+\title{Categorifying Algebra}
 \author{Saxon Supple}
 \date{February 2026}
 
 \begin{document}
 
 \maketitle
-
-
-\begin{theorem}[Universal property of the quotient set]
-Let $X$ and $Y$ be sets, and let $\sim$ be an equivalence relation on $X$. Let $\pi:X\to X/\sim$ be the quotient map, and let $f:X\to Y$ be such that $x_0\sim x_1\implies f(x_0)=f(x_1)\forall x_0,x_1\in X$. Then there exists a unique $\overline{f}:X/\sim\to Y$ such that $f=\overline{f}\circ\pi$.
+\section{Introduction}
+This article will give categorical definitions of the standard objects from algebra, by way of defining universal properties which determine the objects up to unique isomorphism. For a given object $A$ of interest, the general procedure will be to first define an object $B$ as an object which satisfies a specific universal property, then show that $A$ satisfies that universal property, and then show that all pairs of objects $B$ which satisfy the universal property are related by a unique isomorphism. This will then demonstrate that the universal property determines $A$ up to unique isomorphism. We will then apply these universal properties to prove additional useful categorical results, such as the functoriality of the abelianization of a group.
+\section{Sets}
+\begin{definition}[Universal property of the quotient set]
+Let $X$ be a set and let $\sim$ be an equivalence relation on $X$. A pair $(X',\pi:X\to X')$ is a quotient of $X$  by $\sim$ if given any $f:X\to Y$ such that $x_0\sim x_1\implies f(x_0)=f(x_1)\forall x_0,x_1\in X$, then there exists a unique $\overline{f}:X'\to Y$ such that $f=\overline{f}\circ \pi$.
+\end{definition}
+\begin{theorem}
+The canonical projection $\pi:X\to X/\sim:x\mapsto[x]$ satisfies the universal property of the quotient set.
 \end{theorem}
 \begin{proof}
-We define $\overline{f}:X/\sim\to Y$ by $\overline{f}([x])=f(x)$. This is well-defined, since if $x_0\sim x_1$, then $\overline{f}([x_0])=f(x_0)=f(x_1)=\overline{f}([x_1])$, and hence $\overline{f}$ is independent of representatives. Uniqueness is also evident from the definition.
+We define $\overline{f}:X/\sim\to Y$ by $\overline{f}(\pi(x))=f(x)$. This is well-defined, since if $x_0\sim x_1$, then $\overline{f}(\pi(x_0))=f(x_0)=f(x_1)=\overline{f}(\pi(x_1))$, and hence $\overline{f}$ is independent of representatives. Uniqueness is also evident from the definition of $\pi$.
 \end{proof}
-
-\begin{theorem}[Universal property of the quotient group] Let $G,H$ be groups, and let $N\trianglelefteq G$ be a normal subgroup. Let $\pi:G\to G/N$ be the quotient map, and let $\phi:G\to H$ be a group homomorphism, with $N\subseteq\ker \phi$. Then there exists a unique group homomorphism $\overline{\phi}:G/N\to H$ such that $\phi=\overline{\phi}\circ\pi$.
+\begin{theorem}
+Let $X$ be a set with an equivalence relation $\sim$. Let $(W,\pi_W)$ and $(Z,\pi_Z)$ be two pairs of sets, along with maps $\pi_W:X\to W$ and $\pi_Z:X\to Z$ such that both pairs satisfy the universal property of the quotient set. Then there exists a unique bijection $h:W\to Z$ such that $\pi_Z=h\circ\pi_W$.
 \end{theorem}
 \begin{proof}
-Let $\sim$ be an equivalence relation on $G$ which identifies the fibres of $\pi$; that is, $x\sim y\iff xN=yN$. Furthermore, since $N\subseteq\ker \phi$, we have that if $\pi(x)=\pi(y)$, then $x$ and $y$ are in the same coset, so there exists some $n\in N$ such that $x=yn$. Hence, $\phi(x)=\phi(yn)=\phi(y)\phi(n)=\phi(y)$. Then by the universal property of the quotient set, there exists a unique map $\overline{\phi}:G/\sim\to H$ such that $\phi=\overline{\phi}\circ\pi$. In particular, $\overline{\phi}$ is defined as $\overline{\phi}([x])=\overline{\phi}(xN)=\phi(x)\forall x$, and hence $\overline{\phi}$ is simply a map on the cosets of $N$. Furthermore, given $x,y\in G$, we have $\overline{\phi}(xyN)=\phi(xy)=\phi(x)\phi(y)=\overline{\phi}(xN)\overline{\phi}(yN)$, and hence $\overline{\phi}$ is a group homomorphism.
+Let $x_0\sim x_1$. Then $\pi_Z(x_0)=\pi_Z(x_1)$, by the definition of a quotient map. Hence, by the universal property of the quotient set, there exists a unique $h:W\to Z$ such that $\pi_Z=h\circ\pi_W$. Similarly, there exists a $g:Z\to W$ such that $\pi_W=g\circ\pi_Z$. Hence, $\pi_Z=(h\circ g)\circ\pi_Z$. However, we also have that $\pi_Z=\text{id}_Z\circ\pi_Z$, and hence, by uniqueness, $h\circ g=\text{id}_Z$. Similarly, $g\circ h=\text{id}_W$, implying that $h$ is a bijection, as required.
+\end{proof}
+\section{Groups}
+\subsection{Quotient Groups}
+\begin{definition}[Universal property of the quotient group]
+Let $G$ be a group, and let $N\trianglelefteq G$ be a normal subgroup. A pair $(Q,q:G\to Q)$, consisting of a group $Q$ and a group homomorphism $q$, is a quotient of $G$ if $N\subseteq\ker q$ and given any group homomorphism $\phi:G\to H$ with $N\subseteq\ker \phi$, there exists a unique group homomorphism $\overline{\phi}:Q\to H$ such that $\phi=\overline{\phi}\circ q$.
+\end{definition}
+\begin{theorem} Let $G$ be a group and let $N\trianglelefteq G$ be a normal subgroup. Then the canonical quotient homomorphism $\pi:G\to G/N:g\mapsto gN$ is a quotient map.
+\end{theorem}
+\begin{proof}
+Let $\sim$ be an equivalence relation on $G$ which identifies the fibres of $\pi$; that is, $x\sim y\iff xN=yN$. If $\pi(x)=\pi(y)$, then $x$ and $y$ are in the same coset, so there exists some $n\in N$ such that $x=yn$. Hence, since $N\subseteq\ker\phi$, we have $\phi(x)=\phi(yn)=\phi(y)\phi(n)=\phi(y)$. Then by the universal property of the quotient set, there exists a unique map $\overline{\phi}:G/\sim\to H$ such that $\phi=\overline{\phi}\circ\pi$. In particular, $\overline{\phi}$ is defined as $\overline{\phi}([x])=\overline{\phi}(xN)=\phi(x)\forall x$, and hence $\overline{\phi}$ is simply a map on the cosets of $N$. Furthermore, given $x,y\in G$, we have $\overline{\phi}(xyN)=\phi(xy)=\phi(x)\phi(y)=\overline{\phi}(xN)\overline{\phi}(yN)$, and hence $\overline{\phi}$ is a group homomorphism.
 \end{proof}
 
 \begin{corollary}
@@ -55,11 +67,29 @@ By the universal property of the quotient group, we know that $\overline{\phi}$ 
 \noindent Now suppose that $\overline{\phi}$ is injective. That then means that $\ker\overline{\phi}=N$. Let $g\in\ker\phi$. Then $\overline{\phi}(gN)=\phi(g)=e$, implying that $gN=N$, or $g\in N$. Hence, $N=\ker\phi$.
 \end{proof}
 
-\begin{theorem}[Universal property of the abelianization of a group]
-Let $G$ be a group, and let $G^\text{ab}:=G/[G,G]$ be its abelianization. Let $\pi:G\to G^\text{ab}$ be the quotient group homomorphism. Let $H$ be an abelian group. Let $\phi:G\to H$ be a group homomorphism. Then there exists a unique group homomorphism $\phi^\text{ab}:G^\text{ab}\to H$ such that $\phi^\text{ab}\circ\pi=\phi$.
+\begin{theorem}
+Let $G$ be a group and let $N\trianglelefteq G$ be a normal subgroup. Let $q:G\to Q$ and $Q':G\to Q'$ be two quotient homomorphisms. Then there exists a unique isomorphism $h:Q\to Q'$ such that $q'=h\circ q$.
 \end{theorem}
 \begin{proof}
-We simply need to show that the commutator subgroup $[G,G]$ is contained within the kernel of $\phi$, since that will allow us to apply the universal property of the quotient group to obtain the unique group homomorphism $\phi^\text{ab}:G^\text{ab}\to H$ such that $\phi^\text{ab}\circ\pi=\phi$. Indeed, let $x,y\in G$. Then $\phi([x,y])=\phi(x^{-1}y^{-1}xy)=\phi(x)^{-1}\phi(y)^{-1}\phi(x)\phi(y)=e$, so $[x,y]\in\ker\phi$. Hence, since $[G,G]$ is the subgroup generated by all commutators, it follows that $[G,G]\subseteq\ker\phi$, as required.
+By the universal property of the quotient group, there exists a unique group homomorphism $h:Q\to Q'$ such that $q'=h\circ q$, and similarly, there exists a unique group homomorphism $g:Q'\to Q$ such that $q=g\circ q'$. Hence, $q'=(h\circ g)\circ q'$. However, we also have $q'=\text{id}_{Q'}\circ q'$, and so the universal property implies that $h\circ g=\text{id}_{Q'}$. Similarly, $g\circ h=\text{id}_Q$, and hence $h$ is an isomorphism.
+\end{proof}
+
+\subsection{Abelianization}
+\begin{definition}[Universal property of the abelianization of a group]
+Let $G$ be a group. An abelianization of $G$ is a pair $(G^\text{ab},\pi)$, where $G^\text{ab}$ is an abelian group and $\pi:G\to G^\text{ab}$ is a group homomorphism, such that given any abelian group $H$ and group homomorphism $\phi:G\to H$, there exists a unique group homomorphism $\phi^\text{ab}:G^\text{ab}\to H$ such that $\phi^\text{ab}\circ\pi=\phi$.
+\end{definition}
+
+\begin{theorem}
+Let $G$ be a group, let $[G,G]$ be the commutator subgroup, and let $\pi:G\to G/[G,G]$ be the canonical quotient homomorphism. Then $(G/[G,G],\pi)$ is an abelianization of $G$.
+\end{theorem}
+\begin{proof}
+We simply need to show that the commutator subgroup $[G,G]$ is contained within the kernel of $\phi$, since that will allow us to apply the universal property of the quotient group to obtain the unique group homomorphism $\phi^\text{ab}:G/[G,G]\to H$ such that $\phi^\text{ab}\circ\pi=\phi$. Indeed, let $x,y\in G$. Then $\phi([x,y])=\phi(x^{-1}y^{-1}xy)=\phi(x)^{-1}\phi(y)^{-1}\phi(x)\phi(y)=e$, so $[x,y]\in\ker\phi$. Hence, since $[G,G]$ is the subgroup generated by all commutators, it follows that $[G,G]\subseteq\ker\phi$, as required.
+\end{proof}
+\begin{theorem}
+Let $G$ be a group, and let $(G^\text{ab},\pi)$ and $(G^{\text{ab}'},\pi')$ be two abelianizations of $G$. Then there exists a unique isomorphism $h:G^\text{ab}\to G^{\text{ab}'}$ such that $\pi'=h\circ\pi$.
+\end{theorem}
+\begin{proof}
+By the universal property of the abelianization of a group, there exists a unique group isomorphism $h:G^\text{ab}\to G^{\text{ab}'}$ such that $\pi'=h\circ\pi$. Similarly, there exists a unique group isomorphism $g:G^{\text{ab}'}\to G^\text{ab}$ such that $\pi=g\circ\pi'$. Hence, $\pi'=(h\circ g)\circ\pi'$. However, we also have $\pi'=\text{id}_{G^{\text{ab}'}}\circ\pi'$, and hence, by uniqueness, we have $h\circ g=\text{id}_{G^{\text{ab}'}}$. Similarly, $g\circ h=\text{id}_{G^\text{ab}}$, implying that $h$ is an isomorphism.
 \end{proof}
 
 \begin{lemma}
