@@ -114,7 +114,7 @@ R \arrow[r, shift left, "\text{pr}_1"] \arrow[r, shift right, swap, "\text{pr}_2
 \begin{definition}[Universal property of the quotient group]
 Let $G$ be a group, and let $N\trianglelefteq G$ be a normal subgroup. A pair $(Q,q:G\to Q)$, consisting of a group $Q$ and a group homomorphism $q$, is a quotient of $G$ if $N\subseteq\ker q$ and given any group homomorphism $\phi:G\to H$ with $N\subseteq\ker \phi$, there exists a unique group homomorphism $\overline{\phi}:Q\to H$ such that $\phi=\overline{\phi}\circ q$.
 \end{definition}
-\begin{theorem} Let $G$ be a group and let $N\trianglelefteq G$ be a normal subgroup. Then the canonical quotient homomorphism $\pi:G\to G/N:g\mapsto gN$ is a quotient map.
+\begin{theorem} Let $G$ be a group and let $N\trianglelefteq G$ be a normal subgroup. Then the canonical quotient homomorphism $\pi:G\to G/N:g\mapsto gN$ is a quotient homomorphism.
 \end{theorem}
 \begin{proof}
 Let $\sim$ be an equivalence relation on $G$ which identifies the fibres of $\pi$; that is, $x\sim y\iff xN=yN$. If $\pi(x)=\pi(y)$, then $x$ and $y$ are in the same coset, so there exists some $n\in N$ such that $x=yn$. Hence, since $N\subseteq\ker\phi$, we have $\phi(x)=\phi(yn)=\phi(y)\phi(n)=\phi(y)$. Then by the universal property of the quotient set, there exists a unique map $\overline{\phi}:G/\sim\to H$ such that $\phi=\overline{\phi}\circ\pi$. In particular, $\overline{\phi}$ is defined as $\overline{\phi}([x])=\overline{\phi}(xN)=\phi(x)\forall x$, and hence $\overline{\phi}$ is simply a map on the cosets of $N$. Furthermore, given $x,y\in G$, we have $\overline{\phi}(xyN)=\phi(xy)=\phi(x)\phi(y)=\overline{\phi}(xN)\overline{\phi}(yN)$, and hence $\overline{\phi}$ is a group homomorphism.
@@ -133,7 +133,10 @@ By the universal property of the quotient group, we know that $\overline{\phi}$ 
 Let $G$ be a group and let $N\trianglelefteq G$ be a normal subgroup. Let $q:G\to Q$ and $Q':G\to Q'$ be two quotient homomorphisms. Then there exists a unique isomorphism $h:Q\to Q'$ such that $q'=h\circ q$.
 \end{theorem}
 \begin{proof}
-By the universal property of the quotient group, there exists a unique group homomorphism $h:Q\to Q'$ such that $q'=h\circ q$, and similarly, there exists a unique group homomorphism $g:Q'\to Q$ such that $q=g\circ q'$. Hence, $q'=(h\circ g)\circ q'$. However, we also have $q'=\text{id}_{Q'}\circ q'$, and so the universal property implies that $h\circ g=\text{id}_{Q'}$. Similarly, $g\circ h=\text{id}_Q$, and hence $h$ is an isomorphism.
+Let $\pi:G\to K$ be a quotient homomorphism. Let $\iota:N\hookrightarrow G$ be the inclusion homomorphism, and let $z:N\to G:n\mapsto e$ be the trivial homomorphism. Then $\pi\circ\iota=\pi\circ z\iff\pi(n)=e\forall n\in N\iff N\subseteq\ker\pi$, which is true by the definition of $\pi$. Let $\phi:G\to H$ be any homomorphism with $N\subseteq\ker\phi$, or in other words, with $\phi\circ\iota=\phi\circ z$. Then by the universal property, there exists a unique homomorphism $\overline{\phi}:K\to H$ such that $\phi=\overline{\phi}\circ\pi$.\[\begin{tikzcd}
+N \arrow[r, shift left, "\iota"] \arrow[r, shift right, swap, "z"] & G \arrow[r, "\pi"] \arrow[dr, swap, "\forall \phi"] & K \arrow[d, "\exists! \overline{\phi}"] \\
+& & H
+\end{tikzcd}\]This is exactly equivalent to saying that $\pi$ is a coequalizer in the category of groups. Hence, the result follows by uniqueness.
 \end{proof}
 
 \subsection{Abelianization}
