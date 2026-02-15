@@ -190,6 +190,22 @@ Direct products of groups are unique up to unique isomorphism.
 \begin{proof}
 Direct products are products in the category of groups, and so uniqueness up to unique isomorphism follows.
 \end{proof}
+\subsection{Free Products}
+\begin{definition}[Universal property of free products]
+Let $(G_\alpha)_{\alpha\in\mathcal{A}}$ be an indexed collection of groups. We say that a group $G$, along with homomorphisms $\iota_\alpha:G_\alpha\to G$, is a free product of $(G_\alpha)_{\alpha\in\mathcal{A}}$ if for any group $H$ with homomorphisms $\phi_\alpha:G_\alpha\to H$, there exists a unique homomorphism $\Psi:G\to H$ such that $\Psi\circ\iota_\alpha=\phi_\alpha\forall\alpha\in\mathcal{A}$.
+\end{definition}
+\begin{theorem}
+Let $(G_\alpha)_{\alpha\in\mathcal{A}}$ be an indexed collection of groups. Let $*_\alpha G_\alpha$ be defined as in page $41$ of "Algebraic Topology" by Allen Hatcher. Let $\iota_\alpha:G_\alpha\to *_\alpha G_\alpha$ be the standard inclusion homomorphisms. Then $*_\alpha G_\alpha$, equipped with $\iota_\alpha$, is a free product of $(G_\alpha)_{\alpha\in\mathcal{A}}$.
+\end{theorem}
+\begin{proof}
+Let $H$ be a group, and let $\phi_\alpha:G_\alpha\to H$ be homomorphisms. Then there exists a unique homomorphism $\Psi:*_\alpha G_\alpha\to H$ so that $\Psi\circ\iota_\alpha=\phi_\alpha\forall\alpha\in\mathcal{A}$, namely the homomorphism given by $\Psi(g_1g_2\cdots g_m)=\Psi(\iota_{i_1}(g_1)\iota_{i_2}(g_2)\cdots\iota_{i_m}(g_m))=\phi_{i_1}(g_1)\phi_{i_2}(g_2)\cdots\phi_{i_m}(g_m)$. Hence, $*_{\alpha\in\mathcal{A}}G_\alpha$ is a free product of $(G_\alpha)_{\alpha\in\mathcal{A}}$.
+\end{proof}
+\begin{theorem}
+Free products are unique up to unique isomorphism.
+\end{theorem}
+\begin{proof}
+Free products are coproducts in the category of groups, and so uniqueness up to unique isomorphism follows.
+\end{proof}
 \subsection{Abelianization}
 \begin{definition}[Universal property of the abelianization of a group]
 Let $G$ be a group. An abelianization of $G$ is a pair $(G^\text{ab},\pi)$, where $G^\text{ab}$ is an abelian group and $\pi:G\to G^\text{ab}$ is a group homomorphism, such that given any abelian group $H$ and group homomorphism $\phi:G\to H$, there exists a unique group homomorphism $\phi^\text{ab}:G^\text{ab}\to H$ such that $\phi^\text{ab}\circ\pi=\phi$.
