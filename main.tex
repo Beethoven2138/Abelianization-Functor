@@ -109,6 +109,25 @@ R \arrow[r, shift left, "\text{pr}_1"] \arrow[r, shift right, swap, "\text{pr}_2
 & & Y
 \end{tikzcd}\] This is identical to saying that $\pi$ is a coequalizer of $\text{pr}_1$ and $\text{pr}_2$ in the category of sets, and hence, $\pi$ is unique up to unique bijection. In particular, there exists a unique bijection $h:W\to Z$ such that $\pi_Z=h\circ\pi_W$.
 \end{proof}
+\subsection{Products}
+\begin{definition}[Universal property of the product of sets]
+Let $(S_\alpha)_{\alpha\in\mathcal{A}}$ be an indexed collection of sets. A set $S$ equipped with maps $\text{pr}_\alpha:S\to S_\alpha$ is a product of $(S_\alpha)_{\alpha\in\mathcal{A}}$ if for any set $K$ and maps $\phi_\alpha:K\to S_\alpha$, there exists a unique map $\Psi:K\to S$ such that $\text{pr}_\alpha\circ\Psi=\phi_\alpha\forall\alpha\in\mathcal{A}$.
+\end{definition}
+\begin{theorem}
+Let $(S_\alpha)_{\alpha\in\mathcal{A}}$ be an indexed collection of sets. The set \[\prod_{\alpha\in\mathcal{A}}S_\alpha:=\{x:\mathcal{A}\to\bigcup_{\alpha\in\mathcal{A}}S_\alpha\mid\forall\alpha\in\mathcal{A}:x(\alpha)\in S_\alpha\}\] equipped with maps $\text{pr}_\beta:\prod_{\alpha\in\mathcal{A}}S_\alpha\to S_\beta:x\mapsto x(\beta)$ is a product of $(S_\alpha)_{\alpha\in\mathcal{A}}$.
+\end{theorem}
+\begin{proof}
+Let $K$ be another set and let $f_\beta:K\to S_\beta$ be a collection of maps. There is then a unique map $F:K\to\prod_{\alpha\in\mathcal{A}}S_\alpha$ with $\text{pr}_\beta\circ F=f_\beta$, namely the one given by $F(k)(\alpha)=f_\alpha(k)\forall k\in K,\alpha\in\mathcal{A}$.
+\end{proof}
+\begin{remark}
+Note, that when $\mathcal{A}$ is infinite, $\prod_{\alpha\in\mathcal{A}}S_\alpha$ is only non-empty if we assume the axiom of choice, since the definition requires us to pick an element from infinitely many sets.
+\end{remark}
+\begin{theorem}
+Let $(S_\alpha)_{\alpha\in\mathcal{A}}$ be an indexed collection of sets and let $(S,(\text{pr}_\alpha)_{\alpha\in\mathcal{A}})$ and $(S',(\text{pr}'_\alpha)_{\alpha\in\mathcal{A}})$ be two products of $(S_\alpha)_{\alpha\in\mathcal{A}}$. Then there exists a unique bijection $h:S\to S'$ such that $\text{pr}'_\alpha\circ h=\text{pr}_\alpha\forall\alpha\in\mathcal{A}$.
+\end{theorem}
+\begin{proof}
+The product of sets is the product in the category of sets, and so uniqueness follows.
+\end{proof}
 \section{Groups}
 \subsection{Quotient Groups}
 \begin{definition}[Universal property of the quotient group]
@@ -139,7 +158,12 @@ N \arrow[r, shift left, "\iota"] \arrow[r, shift right, swap, "z"] & G \arrow[r,
 \end{tikzcd}\]This is exactly equivalent to saying that $\pi$ is a coequalizer in the category of groups. Hence, the result follows by uniqueness.
 \end{proof}
 \subsection{Products}
-
+\begin{definition}[Universal property of the direct product of groups]
+Let $(G_\alpha)_{\alpha\in\mathcal{A}}$ be an indexed collection of groups. A group $G$ equipped with homomorphisms $\text{pr}_\alpha:G\to G_\alpha$ is a product of $(G_\alpha)_{\alpha\in\mathcal{A}}$ if for any group $H$ and homomorphisms $\phi_\alpha:H\to G_\alpha$, there exists a unique homomorphism $\Psi:H\to G$ such that $\text{pr}_\alpha\circ\Psi=\phi_\alpha\forall\alpha\in\mathcal{A}$.
+\end{definition}
+\begin{theorem}
+Let 
+\end{theorem}
 \subsection{Abelianization}
 \begin{definition}[Universal property of the abelianization of a group]
 Let $G$ be a group. An abelianization of $G$ is a pair $(G^\text{ab},\pi)$, where $G^\text{ab}$ is an abelian group and $\pi:G\to G^\text{ab}$ is a group homomorphism, such that given any abelian group $H$ and group homomorphism $\phi:G\to H$, there exists a unique group homomorphism $\phi^\text{ab}:G^\text{ab}\to H$ such that $\phi^\text{ab}\circ\pi=\phi$.
